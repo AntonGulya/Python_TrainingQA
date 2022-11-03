@@ -10,13 +10,21 @@ class TestAddGroup(unittest.TestCase):
         self.wd = webdriver.Chrome()
         self.wd.implicitly_wait(60)
 
-    
     def test_add_group(self):
         wd = self.wd
         self.open_homePage(wd)
-        self.login(wd)
+        self.login(wd, username="admin", password="secret")
         self.open_groupsPage(wd)
-        self.create_froup(wd)
+        self.create_froup(wd, name="test", header="test", footer="test")
+        self.return_to_groupsPage(wd)
+        self.loguot(wd)
+
+    def test_add_emptygroup(self):
+        wd = self.wd
+        self.open_homePage(wd)
+        self.login(wd, username="admin", password="secret")
+        self.open_groupsPage(wd)
+        self.create_froup(wd, name="", header="", footer="")
         self.return_to_groupsPage(wd)
         self.loguot(wd)
 
@@ -26,32 +34,32 @@ class TestAddGroup(unittest.TestCase):
     def return_to_groupsPage(self, wd):
         wd.find_element_by_link_text("group page").click()
 
-    def create_froup(self, wd):
+    def create_froup(self, wd, name, header, footer):
         # init new group
         wd.find_element_by_name("new").click()
         # fill group form
         wd.find_element_by_name("group_name").click()
         wd.find_element_by_name("group_name").clear()
-        wd.find_element_by_name("group_name").send_keys("test")
+        wd.find_element_by_name("group_name").send_keys(name)
         wd.find_element_by_name("group_header").click()
         wd.find_element_by_name("group_header").clear()
-        wd.find_element_by_name("group_header").send_keys("test")
+        wd.find_element_by_name("group_header").send_keys(header)
         wd.find_element_by_name("group_footer").click()
         wd.find_element_by_name("group_footer").clear()
-        wd.find_element_by_name("group_footer").send_keys("test")
+        wd.find_element_by_name("group_footer").send_keys(footer)
         # submit group creation
         wd.find_element_by_name("submit").click()
 
     def open_groupsPage(self, wd):
         wd.find_element_by_link_text("groups").click()
 
-    def login(self, wd):
+    def login(self, wd, username, password):
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys("admin")
+        wd.find_element_by_name("user").send_keys(username)
         wd.find_element_by_name("pass").click()
         wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys("secret")
+        wd.find_element_by_name("pass").send_keys(password)
         wd.find_element_by_id("LoginForm").submit()
 
     def open_homePage(self, wd):
