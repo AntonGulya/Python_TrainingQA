@@ -4,7 +4,7 @@ from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest
-from group import Contact
+from classContact import Contact
 
 class TestAddContact(unittest.TestCase):
     def setUp(self):
@@ -25,8 +25,8 @@ class TestAddContact(unittest.TestCase):
                                         company="123",
                                         address="123",
                                         home="123",
-                                        mobile="123",
-                                        work="123",
+                                        mobilePhone="123",
+                                        workingPhone="123",
                                         fax="123",
                                         email="123",
                                         email2="123",
@@ -76,10 +76,10 @@ class TestAddContact(unittest.TestCase):
         wd.find_element_by_name("home").send_keys(group.home)
         wd.find_element_by_name("mobile").click()
         wd.find_element_by_name("mobile").clear()
-        wd.find_element_by_name("mobile").send_keys(group.mobile)
+        wd.find_element_by_name("mobile").send_keys(group.mobilePhone)
         wd.find_element_by_name("work").click()
         wd.find_element_by_name("work").clear()
-        wd.find_element_by_name("work").send_keys(group.work)
+        wd.find_element_by_name("work").send_keys(group.workingPhone)
         wd.find_element_by_name("fax").click()
         wd.find_element_by_name("fax").clear()
         wd.find_element_by_name("fax").send_keys(group.fax)

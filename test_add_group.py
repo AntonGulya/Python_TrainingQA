@@ -3,7 +3,7 @@
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
-from group import Group
+from classGroup import Group
 import unittest
 
 
